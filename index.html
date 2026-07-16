@@ -3,78 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Story Summary</title>
 
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background: #eef5ff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f0f7ff;
         text-align: center;
         padding: 40px;
     }
 
-    h1 {
-        color: #1565c0;
-        margin-bottom: 10px;
-    }
-
-    p {
-        color: #555;
-        margin-bottom: 40px;
-    }
+    h1 { color: #1565c0; margin-bottom: 10px; }
+    p { color: #555; margin-bottom: 30px; }
 
     .container {
-        max-width: 700px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+        max-width: 900px;
         margin: auto;
     }
 
     a {
-        display: block;
         text-decoration: none;
-        background: #1e88e5;
         color: white;
-        padding: 15px;
-        margin: 10px 0;
-        border-radius: 12px;
-        font-size: 20px;
+        padding: 20px 10px;
+        border-radius: 15px;
         font-weight: bold;
-        transition: .3s;
+        font-size: 16px;
+        transition: transform 0.2s, filter 0.3s;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
     a:hover {
-        background: #1565c0;
+        transform: scale(1.05);
+        filter: brightness(1.1);
     }
+
+    /* Tạo bảng màu đa dạng */
+    .u1 { background: #FF6B6B; } .u2 { background: #4ECDC4; }
+    .u3 { background: #45B7D1; } .u4 { background: #96CEB4; }
+    .u5 { background: #FFEEAD; color: #555; } .u6 { background: #D4A5A5; }
+    .u7 { background: #9B59B6; } .u8 { background: #E67E22; }
+    .u9 { background: #2ECC71; } .u10 { background: #3498DB; }
+    .u11 { background: #F1C40F; color: #555; } .u12 { background: #E74C3C; }
+    .u13 { background: #1ABC9C; } .u14 { background: #95A5A6; }
+    .u15 { background: #D35400; } .u16 { background: #8E44AD; }
+    .u17 { background: #27AE60; } .u18 { background: #2980B9; }
+    .u19 { background: #C0392B; } .u20 { background: #7F8C8D; }
 </style>
 </head>
 
 <body>
 
 <div class="container">
-    <h1>📚 Story Summary</h1>
-    <p>Chọn bài học bạn muốn xem:</p>
+    <div style="grid-column: 1 / -1;">
+        <h1>📚 Story Summary</h1>
+        <p>Chọn bài học bạn muốn xem:</p>
+    </div>
 
-    <!-- Danh sách 20 Units -->
-    <a href="Unit1/">📖 Unit 1</a>
-    <a href="Unit2/">📖 Unit 2</a>
-    <a href="Unit3/">📖 Unit 3</a>
-    <a href="Unit4/">📖 Unit 4</a>
-    <a href="Unit5/">📖 Unit 5</a>
-    <a href="Unit6/">📖 Unit 6</a>
-    <a href="Unit7/">📖 Unit 7</a>
-    <a href="Unit8/">📖 Unit 8</a>
-    <a href="Unit9/">📖 Unit 9</a>
-    <a href="Unit10/">📖 Unit 10</a>
-    <a href="Unit11/">📖 Unit 11</a>
-    <a href="Unit12/">📖 Unit 12</a>
-    <a href="Unit13/">📖 Unit 13</a>
-    <a href="Unit14/">📖 Unit 14</a>
-    <a href="Unit15/">📖 Unit 15</a>
-    <a href="Unit16/">📖 Unit 16</a>
-    <a href="Unit17/">📖 Unit 17</a>
-    <a href="Unit18/">📖 Unit 18</a>
-    <a href="Unit19/">📖 Unit 19</a>
-    <a href="Unit20/">📖 Unit 20</a>
+    <!-- Danh sách 20 Units với màu sắc khác nhau -->
+    <a href="unit1/" class="u1">Unit 1</a>
+    <a href="unit2/" class="u2">Unit 2</a>
+    <a href="unit3/" class="u3">Unit 3</a>
+    <a href="unit4/" class="u4">Unit 4</a>
+    <a href="unit5/" class="u5">Unit 5</a>
+    <a href="unit6/" class="u6">Unit 6</a>
+    <a href="unit7/" class="u7">Unit 7</a>
+    <a href="unit8/" class="u8">Unit 8</a>
+    <a href="unit9/" class="u9">Unit 9</a>
+    <a href="unit10/" class="u10">Unit 10</a>
+    <a href="unit11/" class="u11">Unit 11</a>
+    <a href="unit12/" class="u12">Unit 12</a>
+    <a href="unit13/" class="u13">Unit 13</a>
+    <a href="unit14/" class="u14">Unit 14</a>
+    <a href="unit15/" class="u15">Unit 15</a>
+    <a href="unit16/" class="u16">Unit 16</a>
+    <a href="unit17/" class="u17">Unit 17</a>
+    <a href="unit18/" class="u18">Unit 18</a>
+    <a href="unit19/" class="u19">Unit 19</a>
+    <a href="unit20/" class="u20">Unit 20</a>
 </div>
 
 </body>
