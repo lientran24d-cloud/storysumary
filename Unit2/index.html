@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luyện Nghe Chép Chính Tả - Unit 1</title>
+    <title>Luyện Nghe Chép Chính Tả - Unit 2</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Thư viện tạo hiệu ứng pháo hoa -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
         tailwind.config = {
@@ -18,12 +19,16 @@
                         success: '#10b981',
                         error: '#ef4444',
                         warning: '#f59e0b',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
         }
     </script>
     <style>
+        /* Hiệu ứng giấy ô ly (Notebook) cho ô nhập liệu */
         .notebook-paper {
             background-color: #fff;
             background-image: linear-gradient(#e5e7eb 2px, transparent 2px);
@@ -36,108 +41,315 @@
             color: #334155;
             box-shadow: inset 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
-        .notebook-paper:focus { outline: none; border-color: #6366f1; box-shadow: inset 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 0 0 4px rgba(99, 102, 241, 0.1); }
+        .notebook-paper:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: inset 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+        .notebook-paper::-webkit-scrollbar { width: 8px; }
+        .notebook-paper::-webkit-scrollbar-track { background: transparent; }
+        .notebook-paper::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        
         .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body class="font-sans bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 min-h-screen p-4 sm:p-8 flex justify-center items-center text-slate-800">
 
     <div class="bg-white/90 backdrop-blur-sm rounded-[2rem] shadow-2xl w-full max-w-4xl relative overflow-hidden border border-white">
+        <!-- Header -->
         <div class="bg-gradient-to-r from-primary to-purple-500 p-8 text-center text-white">
-            <h1 class="text-3xl sm:text-4xl font-extrabold mb-2">Luyện Nghe Chép Chính Tả</h1>
-            <p class="font-bold text-xl opacity-90">Unit 1: Time to sing</p>
+            <h1 class="text-3xl sm:text-4xl font-extrabold mb-2 flex justify-center items-center gap-3">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                Luyện Nghe Chép Chính Tả
+            </h1>
+            <p class="font-bold text-xl opacity-90">Unit 2: Insects in the Classroom</p>
         </div>
 
         <div class="p-6 sm:p-10">
-            <!-- Thông tin học sinh -->
+            <!-- Bước 1 -->
             <div class="mb-8">
-                <h2 class="text-xl font-bold text-slate-700 mb-4">1. Tên học sinh</h2>
-                <input type="text" id="studentName" placeholder="Nhập họ và tên..." class="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 focus:border-primary transition-all font-semibold">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-primary text-white font-bold w-8 h-8 rounded-full flex items-center justify-center">1</span>
+                    <h2 class="text-xl font-bold text-slate-700">Thông tin của bạn</h2>
+                </div>
+                <input type="text" id="studentName" placeholder="Nhập họ và tên học sinh..." class="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 outline-none focus:border-primary focus:bg-white transition-all font-semibold text-slate-700 shadow-sm" required>
             </div>
 
-            <!-- Audio -->
+            <!-- Bước 2 -->
             <div class="mb-8">
-                <h2 class="text-xl font-bold text-slate-700 mb-4">2. Lắng nghe Audio</h2>
-                <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 flex flex-col items-center">
-                    <audio id="myAudio" controls playsinline preload="auto" class="w-full max-w-lg mb-4">
-                        <source src="U1%20Story%20Summary.wav" type="audio/wav">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-primary text-white font-bold w-8 h-8 rounded-full flex items-center justify-center">2</span>
+                    <h2 class="text-xl font-bold text-slate-700">Lắng nghe Audio</h2>
+                </div>
+                <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 flex flex-col items-center shadow-sm">
+                    <audio id="myAudio" controls playsinline preload="auto" class="w-full max-w-lg outline-none mb-4 rounded-full shadow-md">
+                        <!-- Tên file đã được mã hóa khoảng trắng %20 -->
+                        <source id="audioSource" src="U2%20Story%20Summary.wav" type="audio/wav">
+                        <source src="U2%20Story%20Summary.mp3" type="audio/mpeg">
                         Trình duyệt không hỗ trợ phát âm thanh.
                     </audio>
+                    <div class="flex gap-4">
+                        <button onclick="skipAudio(-5)" class="bg-white border border-slate-200 text-slate-600 hover:text-primary hover:border-primary font-bold py-2 px-5 rounded-full transition-all shadow-sm flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path></svg> Lùi 5s
+                        </button>
+                        <button onclick="skipAudio(5)" class="bg-white border border-slate-200 text-slate-600 hover:text-primary hover:border-primary font-bold py-2 px-5 rounded-full transition-all shadow-sm flex items-center gap-2">
+                            Tiến 5s <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Nhập liệu -->
+            <!-- Bước 3 -->
             <div class="mb-8">
-                <h2 class="text-xl font-bold text-slate-700 mb-4">3. Chép chính tả</h2>
-                <textarea id="userInput" placeholder="Gõ nội dung nghe được..." class="w-full h-64 notebook-paper"></textarea>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-primary text-white font-bold w-8 h-8 rounded-full flex items-center justify-center">3</span>
+                    <h2 class="text-xl font-bold text-slate-700">Chép chính tả</h2>
+                </div>
+                <textarea id="userInput" placeholder="We are learning about insects!..." class="w-full h-64 notebook-paper resize-y transition-all"></textarea>
             </div>
 
-            <!-- Kiểm tra -->
+            <!-- Nút Kiểm Tra -->
             <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-slate-100">
-                <button id="btnShowAnswer" onclick="toggleAnswer()" class="hidden text-slate-500 font-bold hover:text-primary">Xem đáp án gốc</button>
+                <button id="btnShowAnswer" onclick="toggleAnswer()" class="hidden items-center gap-2 text-slate-500 font-semibold hover:text-primary transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    <span id="btnShowAnswerText">Xem đáp án gốc</span>
+                </button>
                 <div class="flex-1"></div>
-                <button onclick="checkDictation()" class="w-full sm:w-auto bg-gradient-to-r from-primary to-purple-500 text-white font-extrabold text-xl py-4 px-10 rounded-2xl shadow-lg hover:-translate-y-1 transition-all">✨ Hoàn thành</button>
+                <button onclick="checkDictation()" class="w-full sm:w-auto bg-gradient-to-r from-primary to-purple-500 hover:from-primary-hover hover:to-purple-600 text-white font-extrabold text-xl py-4 px-10 rounded-2xl shadow-[0_10px_25px_rgba(99,102,241,0.4)] hover:-translate-y-1 transition-all flex items-center justify-center gap-2 animate-pulse-slow">
+                    ✨ Hoàn thành bài làm
+                </button>
             </div>
 
-            <!-- Đáp án -->
-            <div id="originalText" class="hidden mt-8 p-6 bg-slate-50 border-2 border-dashed border-primary rounded-2xl text-slate-700 font-medium">
-                <strong class="text-primary block mb-2">Đáp án chuẩn:</strong>
-                <span id="correctAnswerText">Jay doesn't like music class!
-Jay is not good at singing.
-Today, in music class, Jay was singing very quietly.
-Mrs. Hickmore asked him to sing loudly.
-So Jay sang loudly, but it was hurting Mrs. Hickmore's ears!
-Mrs. Hickmore asked him to sing quietly.</span>
+            <!-- Đoạn văn gốc (ẩn) -->
+            <div id="originalText" class="hidden mt-8 p-6 bg-slate-50 border-2 border-dashed border-primary rounded-2xl text-lg leading-relaxed whitespace-pre-line text-slate-700 font-medium">
+                <strong class="text-primary flex items-center gap-2 mb-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                    Đáp án chuẩn:
+                </strong><span id="correctAnswerText">We are learning about insects!
+My teacher has three big tanks.
+One has crickets. Another has a beetle. The
+last one has ants.
+It's cool to watch them.
+I'm not scared of insects.
+I want to learn all about them!</span>
             </div>
 
-            <!-- Kết quả -->
-            <div id="resultSection" class="hidden mt-10 pt-8 border-t-2 border-dashed border-slate-200">
-                <h2 class="text-3xl font-extrabold text-center mb-6">Bảng Điểm</h2>
+            <!-- Kết quả chi tiết -->
+            <div id="resultSection" class="hidden mt-10 pt-8 border-t-2 border-dashed border-slate-200 animate-fade-in">
+                <div class="flex flex-col items-center mb-8">
+                    <h2 class="text-3xl font-extrabold text-slate-800 mb-2">Bảng Điểm</h2>
+                    <span id="displayStudentName" class="text-primary bg-indigo-50 px-5 py-2 rounded-full font-bold shadow-inner"></span>
+                </div>
+                
                 <div id="scoreDisplay" class="text-center mb-8"></div>
-                <div id="comparisonBox" class="bg-slate-50 p-8 rounded-3xl border leading-[2.5] text-lg font-medium text-slate-700"></div>
+                
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-inner leading-10 text-xl font-medium text-slate-700">
+                    <div id="comparisonBox"></div>
+                </div>
+                
+                <!-- Chú giải -->
+                <div class="flex flex-wrap justify-center gap-6 mt-8">
+                    <div class="flex items-center gap-2 text-sm font-bold text-slate-500">
+                        <span class="w-4 h-4 rounded bg-success"></span> Viết đúng
+                    </div>
+                    <div class="flex items-center gap-2 text-sm font-bold text-slate-500">
+                        <span class="w-4 h-4 rounded bg-red-100 border-b-2 border-error"></span> Viết sai / Dư
+                    </div>
+                    <div class="flex items-center gap-2 text-sm font-bold text-slate-500">
+                        <span class="w-4 h-4 rounded bg-amber-100 border-b-2 border-warning"></span> Bỏ sót từ
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 
 <script>
     const audio = document.getElementById('myAudio');
+
+    // Hàm tua audio
+    function skipAudio(seconds) {
+        if (audio.readyState > 0) {
+            audio.currentTime += seconds;
+        }
+    }
+
+    // Toggle đáp án gốc
     function toggleAnswer() {
-        const box = document.getElementById('originalText');
-        box.classList.toggle('hidden');
+        const answerBox = document.getElementById('originalText');
+        const btnText = document.getElementById('btnShowAnswerText');
+        answerBox.classList.toggle('hidden');
+        if(!answerBox.classList.contains('hidden')){
+            answerBox.classList.add('animate-fade-in');
+            btnText.innerHTML = 'Ẩn đáp án gốc';
+        } else {
+            btnText.innerHTML = 'Xem đáp án gốc';
+        }
     }
+
+    // Chuẩn hóa văn bản
     function cleanText(text) {
-        return text.toLowerCase().replace(/[\n\r]/g, " ").replace(/[.,\/#!$%\^&\*;:{}=\-_`~()"'']/g, "").replace(/\s{2,}/g, " ").trim();
+        return text.toLowerCase()
+                   .replace(/[\n\r]/g, " ") 
+                   .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()"'']/g, "")
+                   .replace(/\s{2,}/g, " ") 
+                   .trim();
     }
-    function checkDictation() {
-        const studentName = document.getElementById('studentName').value.trim();
-        const userInput = document.getElementById('userInput').value;
-        if (!studentName) return alert("Bạn quên nhập tên rồi!");
-        if (!userInput.trim()) return alert("Bạn chưa gõ nội dung!");
 
-        const userWords = cleanText(userInput).split(' ');
-        const correctWords = cleanText(document.getElementById('correctAnswerText').innerText).split(' ');
+    // Thông báo nổi (Pop-up Toast)
+    function showMessage(msg, isSuccess = false) {
+        const dialog = document.createElement('div');
+        const bgColor = isSuccess ? 'bg-success' : 'bg-red-500';
+        const icon = isSuccess 
+            ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>`
+            : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>`;
+
+        dialog.className = `fixed top-6 left-1/2 transform -translate-x-1/2 ${bgColor} text-white px-6 py-4 rounded-2xl shadow-2xl z-50 animate-fade-in font-bold flex items-center gap-3`;
+        dialog.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">${icon}</svg> ${msg}`;
+        document.body.appendChild(dialog);
         
-        let correctCount = 0, html = "";
-        correctWords.forEach((word, i) => {
-            if (userWords[i] === word) { html += `<span class="text-green-600 font-bold px-1">${word}</span> `; correctCount++; }
-            else { html += `<span class="text-red-600 font-bold border-b-2 border-red-300 px-1">${word}</span> `; }
-        });
+        setTimeout(() => {
+            dialog.style.opacity = '0';
+            dialog.style.transition = 'opacity 0.4s ease';
+            setTimeout(() => dialog.remove(), 400);
+        }, 3500);
+    }
 
-        document.getElementById('scoreDisplay').innerHTML = `<div class="text-4xl font-extrabold text-indigo-600">🎯 Điểm: ${((correctCount/correctWords.length)*10).toFixed(1)}/10</div>`;
-        document.getElementById('comparisonBox').innerHTML = html;
+    function checkDictation() {
+        const studentNameInput = document.getElementById('studentName');
+        const userInputBox = document.getElementById('userInput');
+        const studentName = studentNameInput.value.trim();
+        
+        if (!studentName) {
+            showMessage("Bạn quên nhập tên rồi kìa!");
+            studentNameInput.focus();
+            return;
+        }
+
+        const userTextRaw = userInputBox.value;
+        const correctTextRaw = document.getElementById('correctAnswerText').innerText;
+        
+        if (!userTextRaw.trim()) {
+            showMessage("Bạn chưa gõ nội dung bài nghe!");
+            userInputBox.focus();
+            return;
+        }
+
+        // Đổi nút thành trạng thái loading
+        const btnCheck = document.querySelector('button[onclick="checkDictation()"]');
+        const originalBtnText = btnCheck.innerHTML;
+        btnCheck.innerHTML = '<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Đang chấm bài...';
+        btnCheck.disabled = true;
+
+        const userWords = cleanText(userTextRaw).split(' ').filter(w => w !== "");
+        const correctWords = cleanText(correctTextRaw).split(' ').filter(w => w !== "");
+
+        let comparisonHTML = '';
+        let correctCount = 0;
+        let i = 0; 
+        let j = 0; 
+
+        while (i < correctWords.length) {
+            const expectedWord = correctWords[i];
+            const typedWord = userWords[j];
+
+            if (typedWord === expectedWord) {
+                comparisonHTML += `<span class="text-success font-bold px-1">${expectedWord}</span> `;
+                correctCount++;
+                i++; j++;
+            } else if (typedWord && expectedWord.startsWith(typedWord.substring(0, 3)) && typedWord.length > 2) {
+                comparisonHTML += `<span class="line-through text-error bg-red-100 px-1 rounded mx-0.5">${typedWord}</span><span class="text-amber-600 bg-amber-100 font-bold px-1 rounded mx-0.5">${expectedWord}</span> `;
+                i++; j++;
+            } else if (!typedWord || (userWords.indexOf(expectedWord, j) === -1)) {
+                comparisonHTML += `<span class="text-amber-600 bg-amber-100 font-bold px-1 rounded mx-0.5 border-b-2 border-warning">${expectedWord}</span> `;
+                i++;
+            } else {
+                comparisonHTML += `<span class="line-through text-error bg-red-100 px-1 rounded mx-0.5 border-b-2 border-error">${typedWord}</span> `;
+                j++;
+            }
+        }
+        
+        while(j < userWords.length) {
+            if(userWords[j].trim() !== "") {
+                 comparisonHTML += `<span class="line-through text-error bg-red-100 px-1 rounded mx-0.5 border-b-2 border-error">${userWords[j]}</span> `;
+            }
+            j++;
+        }
+
+        const percentage = Math.round((correctCount / correctWords.length) * 100);
+        const score10 = parseFloat(((correctCount / correctWords.length) * 10).toFixed(1));
+
+        // Cập nhật UI
+        document.getElementById('displayStudentName').innerText = `👤 ${studentName}`;
+        
+        let scoreColorClass = 'text-error';
+        if (percentage >= 80) scoreColorClass = 'text-success';
+        else if (percentage >= 50) scoreColorClass = 'text-warning';
+
+        document.getElementById('scoreDisplay').innerHTML = `
+            <div class="text-5xl font-extrabold ${scoreColorClass} mb-3 drop-shadow-sm">Đạt: ${score10} / 10</div>
+            <div class="text-slate-500 font-bold text-lg bg-white inline-block px-6 py-2 rounded-full border border-slate-200 shadow-sm">(Chính xác: ${percentage}% &bull; Đúng ${correctCount} / ${correctWords.length} từ)</div>
+        `;
+        document.getElementById('comparisonBox').innerHTML = comparisonHTML;
         document.getElementById('resultSection').classList.remove('hidden');
         document.getElementById('btnShowAnswer').classList.remove('hidden');
+        document.getElementById('btnShowAnswer').classList.add('flex');
 
-        fetch('https://script.google.com/macros/s/AKfycbz-TugTe0ZTBYLOjxum0pn71EG6sCs_HDLsZ-pqClxNcDUE6MTyE10UcKuaFZEAgS6D1Q/exec', {
+        // Gửi lên Google Sheets (Đã tích hợp Link App Script mới)
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz-TugTe0ZTBYLOjxum0pn71EG6sCs_HDLsZ-pqClxNcDUE6MTyE10UcKuaFZEAgS6D1Q/exec'; 
+        
+        const payload = {
+            studentName: studentName,
+            lesson: "Unit 2: Insects in the Classroom",
+            score10: score10,
+            percentage: percentage,
+            correctCount: correctCount,
+            totalWords: correctWords.length
+        };
+
+        fetch(SCRIPT_URL, {
             method: 'POST',
             mode: 'no-cors',
-            body: JSON.stringify({ studentName, lesson: "Unit 1: Time to sing", percentage: Math.round((correctCount/correctWords.length)*100) })
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+        }).then(() => {
+            btnCheck.innerHTML = originalBtnText;
+            btnCheck.disabled = false;
+            showMessage("Lưu điểm thành công lên hệ thống!", true);
+            
+            // Bắn pháo hoa nếu điểm >= 8
+            if(score10 >= 8.0) {
+                var duration = 3 * 1000;
+                var animationEnd = Date.now() + duration;
+                var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+                function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+                var interval = setInterval(function() {
+                    var timeLeft = animationEnd - Date.now();
+                    if (timeLeft <= 0) return clearInterval(interval);
+                    var particleCount = 50 * (timeLeft / duration);
+                    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+                }, 250);
+            }
+        }).catch((error) => {
+            btnCheck.innerHTML = originalBtnText;
+            btnCheck.disabled = false;
+            console.error("Lỗi mạng:", error);
+            showMessage("Mạng yếu: Đã chấm điểm nhưng chưa lưu được lên bảng.");
         });
-        document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
-        if((correctCount/correctWords.length) >= 0.8) confetti();
+
+        // Cuộn mượt mà xuống kết quả
+        setTimeout(() => {
+            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
     }
-    function skipAudio(s) { audio.currentTime += s; }
 </script>
+
 </body>
 </html>
