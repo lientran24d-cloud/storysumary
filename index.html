@@ -146,7 +146,7 @@
 
         try {
             const { data, error } = await supabase
-                .from('keys_bai_tap')
+                .from('key_bai_tap')
                 .select('*')
                 .eq('ma_key', inputKey)
                 .single();
@@ -170,7 +170,7 @@
 
             // MÃ HỢP LỆ: Đánh dấu đã sử dụng trên máy chủ
             await supabase
-                .from('keys_bai_tap')
+                .from('key_bai_tap')
                 .update({ da_su_dung: true })
                 .eq('ma_key', inputKey);
 
