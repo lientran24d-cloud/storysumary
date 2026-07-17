@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Story Summary</title>
+<!-- Thêm thư viện Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
     body {
@@ -15,6 +17,24 @@
 
     h1 { color: #1565c0; margin-bottom: 10px; }
     p { color: #555; margin-bottom: 30px; }
+
+    /* Màn hình đăng nhập */
+    #login-screen {
+        background: white; max-width: 400px; margin: 40px auto; 
+        padding: 30px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    #login-screen input {
+        padding: 10px; font-size: 16px; border: 2px solid #3498DB; 
+        border-radius: 8px; width: 80%; margin-bottom: 15px; text-transform: uppercase;
+    }
+    #login-screen button {
+        background-color: #3498DB; border: none; padding: 10px 20px; 
+        font-size: 18px; font-weight: bold; border-radius: 8px; cursor: pointer; color: white;
+    }
+    .error-msg { color: red; font-size: 14px; margin-top: 10px; }
+
+    /* Ẩn nội dung 20 bài học lúc đầu */
+    #main-content { display: none; }
 
     .container {
         display: grid;
@@ -40,7 +60,7 @@
         filter: brightness(1.1);
     }
 
-    /* Tạo bảng màu đa dạng */
+    /* Bảng màu đa dạng */
     .u1 { background: #FF6B6B; } .u2 { background: #4ECDC4; }
     .u3 { background: #45B7D1; } .u4 { background: #96CEB4; }
     .u5 { background: #FFEEAD; color: #555; } .u6 { background: #D4A5A5; }
@@ -56,34 +76,114 @@
 
 <body>
 
-<div class="container">
-    <div style="grid-column: 1 / -1;">
-        <h1>📚 Story Summary</h1>
-        <p>Chọn bài học bạn muốn xem:</p>
-    </div>
-
-    <!-- Danh sách 20 Units với màu sắc khác nhau -->
-    <a href="unit1/" class="u1">Unit 1</a>
-    <a href="unit2/" class="u2">Unit 2</a>
-    <a href="unit3/" class="u3">Unit 3</a>
-    <a href="unit4/" class="u4">Unit 4</a>
-    <a href="unit5/" class="u5">Unit 5</a>
-    <a href="unit6/" class="u6">Unit 6</a>
-    <a href="unit7/" class="u7">Unit 7</a>
-    <a href="unit8/" class="u8">Unit 8</a>
-    <a href="unit9/" class="u9">Unit 9</a>
-    <a href="unit10/" class="u10">Unit 10</a>
-    <a href="unit11/" class="u11">Unit 11</a>
-    <a href="unit12/" class="u12">Unit 12</a>
-    <a href="unit13/" class="u13">Unit 13</a>
-    <a href="unit14/" class="u14">Unit 14</a>
-    <a href="unit15/" class="u15">Unit 15</a>
-    <a href="unit16/" class="u16">Unit 16</a>
-    <a href="unit17/" class="u17">Unit 17</a>
-    <a href="unit18/" class="u18">Unit 18</a>
-    <a href="unit19/" class="u19">Unit 19</a>
-    <a href="unit20/" class="u20">Unit 20</a>
+<!-- PHẦN 1: MÀN HÌNH ĐĂNG NHẬP -->
+<div id="login-screen">
+    <h2>Chào mừng các con! 🌟</h2>
+    <p>Nhập mã học tập của con vào đây nhé:</p>
+    <input type="text" id="passkey" placeholder="Nhập mã...">
+    <br>
+    <button onclick="kiemTraMa()">Vào Lớp</button>
+    <p id="thong-bao" class="error-msg"></p>
 </div>
 
+<!-- PHẦN 2: NỘI DUNG CHÍNH (Sẽ hiện ra khi có vé vào cửa) -->
+<div id="main-content">
+    <div class="container">
+        <div style="grid-column: 1 / -1;">
+            <h1>📚 Story Summary</h1>
+            <p>Chọn bài học con muốn xem:</p>
+        </div>
+
+        <!-- Các đường link đã được chuẩn hóa chữ U hoa -->
+        <a href="Unit1/" class="u1">Unit 1</a>
+        <a href="Unit2/" class="u2">Unit 2</a>
+        <a href="Unit3/" class="u3">Unit 3</a>
+        <a href="Unit4/" class="u4">Unit 4</a>
+        <a href="Unit5/" class="u5">Unit 5</a>
+        <a href="Unit6/" class="u6">Unit 6</a>
+        <a href="Unit7/" class="u7">Unit 7</a>
+        <a href="Unit8/" class="u8">Unit 8</a>
+        <a href="Unit9/" class="u9">Unit 9</a>
+        <a href="Unit10/" class="u10">Unit 10</a>
+        <a href="Unit11/" class="u11">Unit 11</a>
+        <a href="Unit12/" class="u12">Unit 12</a>
+        <a href="Unit13/" class="u13">Unit 13</a>
+        <a href="Unit14/" class="u14">Unit 14</a>
+        <a href="Unit15/" class="u15">Unit 15</a>
+        <a href="Unit16/" class="u16">Unit 16</a>
+        <a href="Unit17/" class="u17">Unit 17</a>
+        <a href="Unit18/" class="u18">Unit 18</a>
+        <a href="Unit19/" class="u19">Unit 19</a>
+        <a href="Unit20/" class="u20">Unit 20</a>
+    </div>
+</div>
+
+<script>
+    // Mã của cô Linda đã được cài đặt sẵn
+    const supabaseUrl = 'https://fiurbtdjtmpkdpngewxo.supabase.co'; 
+    const supabaseKey = 'sb_publishable_CTsjBRJTt9aOWuvIHx4foQ_SBlxpxJ2';
+    const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
+
+    // KHI TRANG VỪA TẢI: Kiểm tra xem con đã nhập mã trước đó chưa
+    window.onload = function() {
+        if (sessionStorage.getItem("da_dang_nhap") === "true") {
+            document.getElementById("login-screen").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+        }
+    };
+
+    // HÀM KIỂM TRA MÃ KHI BẤM NÚT
+    async function kiemTraMa() {
+        const inputKey = document.getElementById("passkey").value.toUpperCase().trim();
+        const thongBao = document.getElementById("thong-bao");
+        
+        if(inputKey === "") {
+            thongBao.innerText = "Con chưa nhập mã kìa! 🐾";
+            return;
+        }
+
+        thongBao.innerText = "Cô đang kiểm tra mã... ⏳";
+
+        try {
+            const { data, error } = await supabase
+                .from('keys_bai_tap')
+                .select('*')
+                .eq('ma_key', inputKey)
+                .single();
+
+            if (error || !data) {
+                thongBao.innerText = "Mã không đúng rồi. Con kiểm tra lại nhé! ❌";
+                return;
+            }
+
+            if (data.da_su_dung === true) {
+                thongBao.innerText = "Mã này đã được sử dụng rồi con nhé! 🔒";
+                return;
+            }
+
+            const homNay = new Date();
+            const hanSuDung = new Date(data.han_su_dung);
+            if (homNay > hanSuDung) {
+                thongBao.innerText = "Mã của con đã hết hạn rồi! ⏰";
+                return;
+            }
+
+            // MÃ HỢP LỆ: Đánh dấu đã sử dụng trên máy chủ
+            await supabase
+                .from('keys_bai_tap')
+                .update({ da_su_dung: true })
+                .eq('ma_key', inputKey);
+
+            // Lưu "vé vào cửa" vào bộ nhớ trình duyệt
+            sessionStorage.setItem("da_dang_nhap", "true");
+
+            // Mở bài học
+            document.getElementById("login-screen").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+        } catch (err) {
+            thongBao.innerText = "Có lỗi kết nối, con nhờ bố mẹ kiểm tra lại mạng nhé!";
+        }
+    }
+</script>
 </body>
 </html>
