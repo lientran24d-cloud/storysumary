@@ -3,9 +3,13 @@
 <head>
     <!-- ĐOẠN CODE SOÁT VÉ BẢO MẬT CHỐNG TRUY CẬP TRỰC TIẾP -->
     <script>
-      if (sessionStorage.getItem("da_dang_nhap") !== "true") {
-          window.location.href = "../index.html"; 
-      }
+        // Kiểm tra xem đã nhập mã ở trang chủ chưa
+        if (sessionStorage.getItem("da_dang_nhap") !== "true") {
+            // Nếu chưa, lưu lại link bài học này để lát quay lại
+            sessionStorage.setItem("link_dang_cho", window.location.href);
+            // Đuổi về trang chủ để nhập mã
+            window.location.href = "../index.html"; 
+        }
     </script>
 
     <meta charset="UTF-8">
@@ -287,10 +291,10 @@ Mrs. Hickmore asked him to sing quietly.</span>
 
     function cleanText(text) {
         return text.toLowerCase()
-                   .replace(/[\n\r]/g, " ") 
-                   .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()"'']/g, "")
-                   .replace(/\s{2,}/g, " ") 
-                   .trim();
+            .replace(/[\n\r]/g, " ") 
+            .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()"'']/g, "")
+            .replace(/\s{2,}/g, " ") 
+            .trim();
     }
 
     // Popup thông báo phong cách hoạt hình
