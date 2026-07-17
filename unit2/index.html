@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <!-- ĐOẠN CODE SOÁT VÉ BẢO MẬT CHỐNG TRUY CẬP TRỰC TIẾP -->
+    <!-- ĐOẠN CODE SOÁT VÉ BẢO MẬT CHỐNG TRUY CẬP TRỰC TIẾP (Đã có tính năng ghi nhớ link) -->
     <script>
-      if (sessionStorage.getItem("da_dang_nhap") !== "true") {
-          window.location.href = "../index.html"; 
-      }
+        if (sessionStorage.getItem("da_dang_nhap") !== "true") {
+            // Ghi nhớ link Unit 2 để đăng nhập xong quay lại thẳng đây
+            sessionStorage.setItem("link_dang_cho", window.location.href);
+            // Đưa về trang chủ để nhập mã
+            window.location.href = "../index.html"; 
+        }
     </script>
 
     <meta charset="UTF-8">
@@ -121,7 +124,6 @@
                     Siêu Trí Nhớ Chính Tả
                 </h1>
                 <div class="inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 px-5 py-2 rounded-full font-bold text-lg border-2 border-indigo-200">
-                    <!-- THAY ĐỔI 1: TÊN BÀI HỌC -->
                     <span>🌟 Unit 2: Insects in the Classroom 🌟</span>
                 </div>
             </div>
@@ -156,7 +158,6 @@
 
                     <!-- Audio Player -->
                     <audio id="myAudio" controls playsinline preload="auto" class="w-full max-w-2xl outline-none mb-6">
-                        <!-- THAY ĐỔI 2: TÊN FILE AUDIO (Đã mã hóa khoảng trắng thành %20 để tránh lỗi web) -->
                         <source id="audioSource" src="U2%20Story%20Summary.wav" type="audio/wav">
                         Trình duyệt không hỗ trợ.
                     </audio>
@@ -200,7 +201,6 @@
 
             <div id="originalText" class="hidden mt-8 p-8 bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-primary rounded-3xl shadow-sm text-xl leading-relaxed whitespace-pre-line text-slate-700 font-semibold relative">
                 <div class="absolute -top-4 right-8 bg-primary text-white px-4 py-1 rounded-full font-bold shadow-md text-sm">Đáp Án Gốc</div>
-                <!-- THAY ĐỔI 3: NỘI DUNG ĐÁP ÁN -->
                 <span id="correctAnswerText">We are learning about insects!
 My teacher has three big tanks.
 One has crickets. Another has a beetle. The
@@ -406,7 +406,6 @@ I want to learn all about them!</span>
         
         const payload = {
             studentName: studentName,
-            // THAY ĐỔI 4: TÊN BÀI HỌC GỬI VỀ GOOGLE SHEETS ĐỂ DỄ QUẢN LÝ
             lesson: "Unit 2: Insects in the Classroom",
             score10: score10,
             percentage: percentage,
