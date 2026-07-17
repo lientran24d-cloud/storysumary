@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <!-- ĐOẠN CODE SOÁT VÉ BẢO MẬT CHỐNG TRUY CẬP TRỰC TIẾP -->
+    <script>
+        if (sessionStorage.getItem("da_dang_nhap") !== "true") {
+            // Ghi nhớ link Unit 7 để đăng nhập xong quay lại thẳng đây
+            sessionStorage.setItem("link_dang_cho", window.location.href);
+            // Đưa về trang chủ để nhập mã
+            window.location.href = "../index.html"; 
+        }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luyện Nghe Chép Chính Tả - Unit 7</title>
+    
+    <!-- Font chữ thân thiện cho trẻ em -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Thư viện Pháo hoa (Confetti) cho hiệu ứng chúc mừng -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Nunito', 'sans-serif'] },
+                    colors: {
+                        primary: '#8b5cf6',
+                        'primary-hover': '#7c3aed',
+                        secondary: '#f43f5e',
+                        accent: '#10b981',
+                        paper: '#fdfbf7',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'bg-pan': 'bg-pan 15s ease infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        'bg-pan': {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background: linear-gradient(-45deg, #a8c0ff, #e2cbff, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: bg-pan 15s ease infinite;
+            overflow-x: hidden;
+        }
+
+        .notebook-paper {
+            background-color: #fff;
+            background-image: 
+                linear-gradient(90deg, transparent 40px, #fca5a5 40px, #fca5a5 42px, transparent 42px),
+                linear-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 100% 100%, 100% 40px;
+            line-height: 40px;
+            padding-left: 55px !important;
+            padding-top: 8px !important;
+            font-size: 1.25rem;
+            color: #334155;
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; border: 2px solid #fff; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .animate-pop-in {
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+</head>
+
+<body class="font-sans min-h-screen p-4 sm:p-8 flex justify-center items-start pt-12 relative text-slate-800">
+
+    <div class="fixed top-10 left-10 w-32 h-32 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
+    <div class="fixed top-40 right-10 w-32 h-32 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
+    <div class="fixed bottom-10 left-1/4 w-40 h-40 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 4s;"></div>
+
+    <div class="glass-panel rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] w-full max-w-4xl relative overflow-hidden z-10">
+        
+        <div class="h-4 w-full bg-gradient-to-r from-yellow-400 via-pink-500 to-primary"></div>
+
+        <div class="p-6 sm:p-10">
+            <div class="text-center mb-10 relative">
+                <div class="inline-block bg-white p-4 rounded-full shadow-lg mb-4 animate-bounce">
+                    <span class="text-5xl">🎧</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-3 drop-shadow-sm">
+                    Siêu Trí Nhớ Chính Tả
+                </h1>
+                <div class="inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 px-5 py-2 rounded-full font-bold text-lg border-2 border-indigo-200">
+                    <span>🌟 Unit 7: Sleepy Jay 🌟</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 shadow-sm border-2 border-slate-100 mb-8 relative group hover:border-blue-300 transition-colors duration-300">
+                <div class="absolute -top-4 -left-4 w-10 h-10 bg-blue-500 text-white rounded-full flex justify-center items-center font-black text-xl shadow-md transform -rotate-12 group-hover:rotate-0 transition-transform">1</div>
+                <label for="studentName" class="font-bold text-slate-700 text-lg flex items-center gap-2 mb-3">
+                    <span class="text-2xl">👤</span> Nhập tên chiến binh:
+                </label>
+                <input type="text" id="studentName" placeholder="Ví dụ: Nguyễn Văn A..." 
+                       class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-4 outline-none focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-100 transition-all font-bold text-xl text-slate-700 placeholder-slate-400">
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 shadow-sm border-2 border-slate-100 mb-8 relative group hover:border-pink-300 transition-colors duration-300">
+                <div class="absolute -top-4 -left-4 w-10 h-10 bg-pink-500 text-white rounded-full flex justify-center items-center font-black text-xl shadow-md transform -rotate-12 group-hover:rotate-0 transition-transform">2</div>
+                
+                <h2 class="font-bold text-slate-700 text-lg flex items-center gap-2 mb-5">
+                    <span class="text-2xl">🎵</span> Nghe đoạn âm thanh:
+                </h2>
+
+                <div class="flex flex-col items-center">
+                    <div class="w-full bg-gradient-to-r from-pink-50 to-purple-50 border-2 border-dashed border-pink-300 rounded-2xl p-6 mb-6 hover:shadow-md hover:border-pink-400 transition-all cursor-pointer flex flex-col items-center justify-center text-center" onclick="document.getElementById('localAudio').click()">
+                        <div class="bg-white p-3 rounded-full shadow-sm mb-3 text-pink-500">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                        </div>
+                        <p class="text-slate-700 font-bold mb-1">Tải file âm thanh từ máy</p>
+                        <p class="text-sm text-slate-500 mb-4">(Đề xuất để nghe mượt nhất)</p>
+                        <span class="bg-pink-500 text-white font-bold px-6 py-2 rounded-xl shadow-md hover:bg-pink-600 hover:scale-105 transition-transform">Chọn file .WAV / .MP3</span>
+                        <input type="file" id="localAudio" accept="audio/*" class="hidden">
+                        <p id="fileNameDisplay" class="text-accent font-bold mt-4 hidden bg-green-50 px-4 py-2 rounded-lg border border-green-200"></p>
+                    </div>
+
+                    <!-- Audio Player CỦA UNIT 7 -->
+                    <audio id="myAudio" controls playsinline preload="auto" class="w-full max-w-2xl outline-none mb-6">
+                        <source id="audioSource" src="U7%20Story%20Summary.wav" type="audio/wav">
+                        Trình duyệt không hỗ trợ.
+                    </audio>
+
+                    <div class="flex gap-4">
+                        <button onclick="skipAudio(-5)" class="bg-indigo-50 border-2 border-indigo-200 text-indigo-600 hover:bg-indigo-100 hover:border-indigo-300 font-bold py-3 px-6 rounded-2xl transition-all hover:-translate-y-1 shadow-sm flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path></svg> 
+                            Lùi 5s
+                        </button>
+                        <button onclick="skipAudio(5)" class="bg-indigo-50 border-2 border-indigo-200 text-indigo-600 hover:bg-indigo-100 hover:border-indigo-300 font-bold py-3 px-6 rounded-2xl transition-all hover:-translate-y-1 shadow-sm flex items-center gap-2">
+                            Tiến 5s 
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 shadow-sm border-2 border-slate-100 mb-8 relative group hover:border-green-300 transition-colors duration-300">
+                <div class="absolute -top-4 -left-4 w-10 h-10 bg-green-500 text-white rounded-full flex justify-center items-center font-black text-xl shadow-md transform -rotate-12 group-hover:rotate-0 transition-transform">3</div>
+                
+                <label for="userInput" class="flex items-center gap-2 font-bold text-lg text-slate-800 mb-4">
+                    <span class="text-2xl">✍️</span> Chép lại những gì bạn nghe được:
+                </label>
+                
+                <div class="relative rounded-2xl overflow-hidden shadow-inner border border-slate-200">
+                    <textarea id="userInput" placeholder="Bắt đầu viết tại đây..." 
+                              class="w-full h-64 notebook-paper outline-none resize-y transition-all"></textarea>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pb-4">
+                <button id="btnShowAnswer" onclick="toggleAnswer()" class="hidden items-center gap-2 text-slate-500 font-bold hover:text-primary transition-colors bg-slate-100 px-6 py-3 rounded-xl">
+                    <span class="text-xl">👀</span> <span id="btnShowAnswerText">Xem đáp án gốc</span>
+                </button>
+                <div class="flex-1"></div>
+                
+                <button onclick="checkDictation()" class="w-full sm:w-auto bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 hover:from-yellow-500 hover:via-orange-600 hover:to-red-600 text-white font-black text-xl py-4 px-10 rounded-2xl shadow-[0_10px_20px_rgba(249,115,22,0.4)] hover:shadow-[0_15px_25px_rgba(249,115,22,0.6)] hover:-translate-y-1 transform transition-all flex items-center justify-center gap-3 animate-pulse hover:animate-none">
+                    <span>🚀</span> KIỂM TRA ĐIỂM SỐ
+                </button>
+            </div>
+
+            <div id="originalText" class="hidden mt-8 p-8 bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-primary rounded-3xl shadow-sm text-xl leading-relaxed whitespace-pre-line text-slate-700 font-semibold relative">
+                <div class="absolute -top-4 right-8 bg-primary text-white px-4 py-1 rounded-full font-bold shadow-md text-sm">Đáp Án Gốc</div>
+                <!-- ĐÁP ÁN CỦA UNIT 7 ĐÃ ĐƯỢC CHÈN VÀO ĐÂY -->
+                <span id="correctAnswerText">Jay was very sleepy today.
+He slept next to his breakfast.
+He slept on top of his textbook and under the
+blackboard.
+He fell asleep at the crosswalk.
+He slept at the theater, the restaurant, the bookshop, and
+at church.
+Now it is time for bed, but he is not tired
+anymore.</span>
+            </div>
+
+            <div id="resultSection" class="hidden mt-10 pt-10 border-t-2 border-slate-200/50">
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-black text-slate-800 drop-shadow-sm mb-2">Bảng Điểm Thành Tích</h2>
+                    <span id="displayStudentName" class="inline-block text-xl text-primary bg-indigo-50 px-6 py-2 rounded-full font-bold shadow-sm border border-indigo-100"></span>
+                </div>
+                
+                <div id="scoreDisplay" class="flex justify-center mb-10">
+                </div>
+                
+                <h3 class="font-bold text-slate-600 mb-4 flex items-center gap-2"><span class="text-xl">🔍</span> So sánh chi tiết:</h3>
+                <div class="bg-paper p-8 rounded-3xl border-2 border-slate-200 shadow-inner leading-[2.8] text-xl font-medium text-slate-700 font-sans">
+                    <div id="comparisonBox"></div>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-8 mt-8 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm inline-flex mx-auto">
+                    <div class="flex items-center gap-2 text-base font-bold text-slate-600">
+                        <span class="w-5 h-5 rounded-md bg-green-500 shadow-sm"></span> Đúng
+                    </div>
+                    <div class="flex items-center gap-2 text-base font-bold text-slate-600">
+                        <span class="w-5 h-5 rounded-md bg-red-100 border-2 border-red-400"></span> Sai / Thừa
+                    </div>
+                    <div class="flex items-center gap-2 text-base font-bold text-slate-600">
+                        <span class="w-5 h-5 rounded-md bg-yellow-100 border-2 border-yellow-400"></span> Thiếu
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+    const audio = document.getElementById('myAudio');
+    const localAudioInput = document.getElementById('localAudio');
+    const fileNameDisplay = document.getElementById('fileNameDisplay');
+    
+    localAudioInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const fileURL = URL.createObjectURL(file);
+            audio.src = fileURL;
+            audio.load();
+            fileNameDisplay.innerHTML = `✅ Đã tải: ${file.name}`;
+            fileNameDisplay.classList.remove('hidden');
+            audio.play().catch(e => console.log("Trình duyệt di động chặn tự động phát."));
+        }
+    });
+
+    function skipAudio(seconds) {
+        if (audio.readyState > 0 || audio.src.startsWith('blob:')) {
+            audio.currentTime += seconds;
+        }
+    }
+
+    function toggleAnswer() {
+        const answerBox = document.getElementById('originalText');
+        const btnText = document.getElementById('btnShowAnswerText');
+        
+        if (answerBox.classList.contains('hidden')) {
+            answerBox.classList.remove('hidden');
+            answerBox.classList.add('animate-pop-in');
+            btnText.innerHTML = 'Ẩn đáp án gốc';
+        } else {
+            answerBox.classList.add('hidden');
+            answerBox.classList.remove('animate-pop-in');
+            btnText.innerHTML = 'Xem đáp án gốc';
+        }
+    }
+
+    function cleanText(text) {
+        return text.toLowerCase()
+                   .replace(/[\n\r]/g, " ") 
+                   .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()"'']/g, "")
+                   .replace(/\s{2,}/g, " ") 
+                   .trim();
+    }
+
+    function showMessage(msg, isSuccess = false) {
+        const dialog = document.createElement('div');
+        const bgColor = isSuccess ? 'bg-accent' : 'bg-secondary';
+        const icon = isSuccess ? '🎉' : '⚠️';
+        
+        dialog.className = `fixed top-10 left-1/2 transform -translate-x-1/2 ${bgColor} text-white px-8 py-4 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] z-50 animate-pop-in font-black text-lg flex items-center gap-3`;
+        dialog.innerHTML = `<span class="text-2xl">${icon}</span> ${msg}`;
+        document.body.appendChild(dialog);
+        
+        setTimeout(() => {
+            dialog.style.opacity = '0';
+            dialog.style.transform = 'translate(-50%, -20px) scale(0.9)';
+            dialog.style.transition = 'all 0.4s ease';
+            setTimeout(() => dialog.remove(), 400);
+        }, 3500);
+    }
+
+    function checkDictation() {
+        const studentNameInput = document.getElementById('studentName');
+        const userInputBox = document.getElementById('userInput');
+        const studentName = studentNameInput.value.trim();
+        
+        if (!studentName) {
+            showMessage("Ối! Con quên nhập tên mất rồi kìa!");
+            studentNameInput.focus();
+            return;
+        }
+
+        const userTextRaw = userInputBox.value;
+        const correctTextRaw = document.getElementById('correctAnswerText').innerText;
+        
+        if (!userTextRaw.trim()) {
+            showMessage("Con chưa viết gì vào giấy kìa! Hãy nghe và viết nhé!");
+            userInputBox.focus();
+            return;
+        }
+
+        const userWords = cleanText(userTextRaw).split(' ').filter(w => w !== "");
+        const correctWords = cleanText(correctTextRaw).split(' ').filter(w => w !== "");
+
+        let comparisonHTML = '';
+        let correctCount = 0;
+        let i = 0; 
+        let j = 0; 
+
+        while (i < correctWords.length) {
+            const expectedWord = correctWords[i];
+            const typedWord = userWords[j];
+
+            if (typedWord === expectedWord) {
+                comparisonHTML += `<span class="text-green-600 bg-green-100 font-extrabold px-1.5 py-0.5 rounded-lg shadow-sm mx-0.5">${expectedWord}</span> `;
+                correctCount++;
+                i++; j++;
+            } else if (typedWord && expectedWord.startsWith(typedWord.substring(0, 3)) && typedWord.length > 2) {
+                comparisonHTML += `<span class="line-through text-red-500 bg-red-50 px-1 rounded mx-0.5">${typedWord}</span><span class="text-orange-600 bg-yellow-100 font-bold px-1.5 py-0.5 rounded-lg border border-yellow-300 mx-0.5">${expectedWord}</span> `;
+                i++; j++;
+            } else if (!typedWord || (userWords.indexOf(expectedWord, j) === -1)) {
+                comparisonHTML += `<span class="text-orange-600 bg-yellow-100 font-bold px-1.5 py-0.5 rounded-lg border border-yellow-300 mx-0.5" title="Thiếu từ này">${expectedWord}</span> `;
+                i++;
+            } else {
+                comparisonHTML += `<span class="line-through text-red-500 bg-red-100 px-1.5 py-0.5 rounded-lg mx-0.5">${typedWord}</span> `;
+                j++;
+            }
+        }
+        
+        while(j < userWords.length) {
+            if(userWords[j].trim() !== "") {
+                 comparisonHTML += `<span class="line-through text-red-500 bg-red-100 px-1.5 py-0.5 rounded-lg mx-0.5">${userWords[j]}</span> `;
+            }
+            j++;
+        }
+
+        const percentage = Math.round((correctCount / correctWords.length) * 100);
+        const score10 = parseFloat(((correctCount / correctWords.length) * 10).toFixed(1));
+
+        if (score10 >= 8.0) {
+            confetti({
+                particleCount: 150,
+                spread: 80,
+                origin: { y: 0.6 },
+                colors: ['#8b5cf6', '#f43f5e', '#10b981', '#fcd34d']
+            });
+        }
+
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const comparisonBox = document.getElementById('comparisonBox');
+        const resultSection = document.getElementById('resultSection');
+        
+        document.getElementById('displayStudentName').innerText = `Học viên: ${studentName}`;
+
+        let scoreBadge = '';
+        if (score10 >= 9) scoreBadge = '🏆 Tuyệt Đỉnh!';
+        else if (score10 >= 7) scoreBadge = '⭐ Rất Tốt!';
+        else if (score10 >= 5) scoreBadge = '👍 Cố gắng lên nhé!';
+        else scoreBadge = '💪 Đừng nản chí, làm lại nào!';
+
+        let scoreColorClass = 'from-red-400 to-red-600';
+        if (score10 >= 8) scoreColorClass = 'from-green-400 to-emerald-600';
+        else if (score10 >= 5) scoreColorClass = 'from-yellow-400 to-orange-500';
+
+        scoreDisplay.innerHTML = `
+            <div class="bg-gradient-to-br ${scoreColorClass} p-1 rounded-3xl shadow-xl transform hover:scale-105 transition-transform">
+                <div class="bg-white rounded-[1.3rem] p-6 text-center h-full flex flex-col justify-center">
+                    <div class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Điểm số của bạn</div>
+                    <div class="text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r ${scoreColorClass}">${score10}</div>
+                    <div class="text-lg font-bold text-slate-600 mt-2">${percentage}% Chính xác</div>
+                    <div class="mt-3 px-4 py-1.5 bg-slate-100 rounded-full font-bold text-slate-700">${scoreBadge}</div>
+                </div>
+            </div>
+        `;
+        
+        comparisonBox.innerHTML = comparisonHTML;
+        resultSection.classList.remove('hidden');
+        document.getElementById('btnShowAnswer').classList.remove('hidden');
+        document.getElementById('btnShowAnswer').classList.add('flex');
+        
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz-TugTe0ZTBYLOjxum0pn71EG6sCs_HDLsZ-pqClxNcDUE6MTyE10UcKuaFZEAgS6D1Q/exec'; 
+        
+        const payload = {
+            studentName: studentName,
+            lesson: "Unit 7: Sleepy Jay", // GỬI ĐÚNG TÊN UNIT VỀ GOOGLE SHEET
+            score10: score10,
+            percentage: percentage,
+            correctCount: correctCount,
+            totalWords: correctWords.length
+        };
+
+        const btnCheck = document.querySelector('button[onclick="checkDictation()"]');
+        const originalBtnText = btnCheck.innerHTML;
+        btnCheck.innerHTML = '⏳ Đang lưu kết quả...';
+        btnCheck.disabled = true;
+
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+        }).then(() => {
+            btnCheck.innerHTML = originalBtnText;
+            btnCheck.disabled = false;
+            showMessage("Tuyệt vời! Điểm của con đã được nộp cho cô giáo!", true);
+        }).catch((error) => {
+            btnCheck.innerHTML = originalBtnText;
+            btnCheck.disabled = false;
+            showMessage("Lỗi mạng: Đã chấm điểm nhưng chưa gửi được cho cô.");
+        });
+
+        setTimeout(() => {
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }
+</script>
+
+</body>
+</html>
