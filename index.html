@@ -119,10 +119,11 @@
 </div>
 
 <script>
-    // Mã của cô Linda đã được cài đặt sẵn
+    // Mã cấu hình API
     const supabaseUrl = 'https://fiurbtdjtmpkdpngewxo.supabase.co'; 
     const supabaseKey = 'sb_publishable_CTsjBRJTt9aOWuvIHx4foQ_SBlxpxJ2';
-    const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
+    // Đã sửa lại cú pháp khởi tạo Supabase bằng window.supabase
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     // KHI TRANG VỪA TẢI: Kiểm tra xem con đã nhập mã trước đó chưa
     window.onload = function() {
